@@ -1,0 +1,96 @@
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+>>>>>>> sidebar
+    left: 0;
+    background-color: #496882; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+
+    color:white
+}
+
+.sidebarsection {
+    background-color: #364D61;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+form {
+    display: block;
+}
+form > p {
+    margin-bottom: 0;
+}
+
+
+hr {
+    border-top: 1px solid black;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #66cc00;
+}
+
+.sidebarsection {
+    background-color: #364D61;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}

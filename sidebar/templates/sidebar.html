@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h1>Greenpeace</h1>
+        </div>
+
+        <div class="sidebarsection">
+            <h3>View Data</h3>
+            <hr>
+            <p>Filter by:</p>
+
+            <!-- https://docs.djangoproject.com/en/3.1/topics/forms/ -->
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit">
+            </form>
+
+        </div>
+
+        <div class="sidebarsection">
+            <h3>Analyze Trends</h3>
+            <hr>
+            <a href="#">New Dashboard</a>
+            <a href="#">Saved Dashboards</a>
+        </div>
+
+        <div class="sidebarsection">
+            <h3>Modify Data</h3>
+            <hr>
+            <a href="#">Add Program Evaluation</a>
+            <a href="#">Edit Program Evaluations</a>
+        </div>
+
+        <h3 style="text-align: right; padding-right: 10px;"><a href="#">Sign out</a></h3>
+    </nav>
+
+{% endblock sidebar %}

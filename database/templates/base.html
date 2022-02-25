@@ -1,0 +1,137 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Greenpeace Evaluations Database</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- jQuery Table CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <!-- Font Awesome JS 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    -->
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1>Greenpeace</h1>
+            </div>
+
+            <div class="sidebarsection">
+                <h3>View Data</h3>
+                <hr>
+                <p>Filter by:</p>
+
+                <!-- https://docs.djangoproject.com/en/3.1/topics/forms/ -->
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit">
+                </form>
+
+            </div>
+
+            <div class="sidebarsection">
+                <h3>Analyze Trends</h3>
+                <hr>
+                <a href="#">New Dashboard</a>
+                <a href="#">Saved Dashboards</a>
+            </div>
+
+            <div class="sidebarsection">
+                <h3>Modify Data</h3>
+                <hr>
+                <a href="#">Add Program Evaluation</a>
+                <a href="#">Edit Program Evaluations</a>
+            </div>
+
+            <h3 style="text-align: right; padding-right: 10px;"><a href="#">Sign out</a></h3>
+        </nav>
+
+        <!-- Page Content  -->
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- jQuery Table -->
+    <script src= "https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            var data = {{ data|safe }};
+            var columns = [];
+            for(var key in data[0]){
+                if(key == "Link" || key == "Embed Link"){
+                    continue;
+                }
+                columns.push({data : key, "title":key})
+            }
+            link_column = { 
+                data: "Link",
+                "title": "Link",
+                "render": function(data, type, row, meta){
+                    if(type === 'display'){
+                        data = '<a href="' + data + '">' + data + '</a>';
+                    }
+
+                    return data;
+                }
+            } 
+            embed_link_column = { 
+                data: "Embed Link",
+                "title": "Preview",
+                "render": function(data, type, row, meta){
+                    if(type === 'display'){
+                        data = '<a href="' + data + '">' + '<img src="/static/website-link.png" width=30em>'+ '</a>';
+                    }
+
+                    return data;
+                }
+            } 
+            columns.push(link_column);
+            columns.push(embed_link_column);
+            console.log(data);
+            $('#table').DataTable({
+                data : data,
+                columns : columns
+            });
+        } );
+    </script>
+</body>
+</html>

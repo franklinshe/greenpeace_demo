@@ -1,0 +1,10 @@
+venv/
+.DS_Store
+
+*.log
+*.pot
+*.pyc
+*/__pycache__/
+
+db.sqlite3
+greenpeace/.env

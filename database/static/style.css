@@ -1,0 +1,164 @@
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #496882;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #496882;
+}
+
+form > p {
+    margin-bottom: 0;
+}
+
+hr {
+    border-top: 1px solid black;
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+#sidebar a:hover {
+    color: #66cc00;
+}
+
+.sidebarsection {
+    background-color: #364D61;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+
+
+
+
+/* ---------------------------------------------------
+    DATABASE STYLE
+----------------------------------------------------- */
+
+  .header {
+    display: block;
+    height: 50px;
+    background-color: #364D61;
+  }
+  .tabordion {
+    display: block;
+    margin: auto;
+    position: relative;
+    background-color: #496882;
+    height: 100vh;
+  }
+  
+  .tabordion input[name="sections"] {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+  }
+  
+  .tabordion section {
+    display: block;
+  }
+  
+  .tabordion section label {
+    background: #ccc;
+    cursor: pointer;
+    display: block;
+    font-size: 1.2em;
+    padding: 15px 20px;
+    margin: 5px;
+    position: relative;
+    width: 180px;
+    z-index:100;
+  }
+  
+  .tabordion section article {
+    display: none;
+    top: 50px;
+    left: 230px;
+    min-width: 300px;
+    padding: 0 0 0 21px;
+    position: absolute;  
+  }
+  
+  .tabordion section article:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    left:-229px;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    z-index:1;
+  }
+  
+  .tabordion input[name="sections"]:checked + label { 
+    background: #eee;
+  }
+  
+  .tabordion input[name="sections"]:checked ~ article {
+    display: block;
+  }

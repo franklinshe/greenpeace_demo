@@ -1,0 +1,71 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Greenpeace Evaluations Database</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- jQuery Table CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <!-- Font Awesome JS 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    -->
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1>Greenpeace</h1>
+            </div>
+
+            <div class="sidebarsection">
+                <h3>View Data</h3>
+                <hr>
+                <p>Filter by:</p>
+
+                <!-- https://docs.djangoproject.com/en/3.1/topics/forms/ -->
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit">
+                </form>
+
+            </div>
+
+            <div class="sidebarsection">
+                <h3>Analyze Trends</h3>
+                <hr>
+                <a href="#">New Dashboard</a>
+                <a href="#">Saved Dashboards</a>
+            </div>
+
+            <div class="sidebarsection">
+                <h3>Modify Data</h3>
+                <hr>
+                <a href="#">Add Program Evaluation</a>
+                <a href="#">Edit Program Evaluations</a>
+            </div>
+
+            <h3 style="text-align: right; padding-right: 10px;"><a href="#">Sign out</a></h3>
+        </nav>
+
+        <!-- insert modal  -->
+        {% include "modal/templates/modal.html" %}  
+
+    </div>
+</body>
+</html>
